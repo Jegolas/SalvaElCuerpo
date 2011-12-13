@@ -159,6 +159,14 @@
 		4138E087148B4E31006DAA6D /* HelloWorldLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4138E086148B4E31006DAA6D /* HelloWorldLayer.mm */; };
 		4138E08A148B4E31006DAA6D /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4138E089148B4E31006DAA6D /* GLES-Render.mm */; };
 		4138E08D148B4E31006DAA6D /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = 4138E08C148B4E31006DAA6D /* blocks.png */; };
+		FC82349314933F22008B79C6 /* ControllerLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC82349214933F22008B79C6 /* ControllerLayer.mm */; };
+		FC82349B14934363008B79C6 /* SneakyPad.m in Sources */ = {isa = PBXBuildFile; fileRef = FC82349A14934363008B79C6 /* SneakyPad.m */; };
+		FC82349E149346F9008B79C6 /* digits.fnt in Resources */ = {isa = PBXBuildFile; fileRef = FC82349C149346F9008B79C6 /* digits.fnt */; };
+		FC82349F149346F9008B79C6 /* digits.png in Resources */ = {isa = PBXBuildFile; fileRef = FC82349D149346F9008B79C6 /* digits.png */; };
+		FC8234A21493488E008B79C6 /* 64_white.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8234A01493488E008B79C6 /* 64_white.png */; };
+		FC8234A31493488E008B79C6 /* 128_white.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8234A11493488E008B79C6 /* 128_white.png */; };
+		FCE8E295148C9B51002F8D0B /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE8E294148C9B51002F8D0B /* Game.m */; };
+		FCE8E297148C9F57002F8D0B /* stars.png in Resources */ = {isa = PBXBuildFile; fileRef = FCE8E296148C9F57002F8D0B /* stars.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -473,6 +481,17 @@
 		4138E089148B4E31006DAA6D /* GLES-Render.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "GLES-Render.mm"; sourceTree = "<group>"; };
 		4138E08B148B4E31006DAA6D /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
 		4138E08C148B4E31006DAA6D /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
+		FC82349114933F22008B79C6 /* ControllerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ControllerLayer.h; path = Layers/ControllerLayer.h; sourceTree = "<group>"; };
+		FC82349214933F22008B79C6 /* ControllerLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ControllerLayer.mm; path = Layers/ControllerLayer.mm; sourceTree = "<group>"; };
+		FC82349914934363008B79C6 /* SneakyPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SneakyPad.h; path = Controllers/SneakyPad.h; sourceTree = "<group>"; };
+		FC82349A14934363008B79C6 /* SneakyPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SneakyPad.m; path = Controllers/SneakyPad.m; sourceTree = "<group>"; };
+		FC82349C149346F9008B79C6 /* digits.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = digits.fnt; sourceTree = "<group>"; };
+		FC82349D149346F9008B79C6 /* digits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = digits.png; sourceTree = "<group>"; };
+		FC8234A01493488E008B79C6 /* 64_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 64_white.png; sourceTree = "<group>"; };
+		FC8234A11493488E008B79C6 /* 128_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 128_white.png; sourceTree = "<group>"; };
+		FCE8E293148C9B51002F8D0B /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		FCE8E294148C9B51002F8D0B /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
+		FCE8E296148C9F57002F8D0B /* stars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stars.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -529,6 +548,10 @@
 		4138DEBA148B4E2E006DAA6D /* SalvaElCuerpo */ = {
 			isa = PBXGroup;
 			children = (
+				FC82349814934328008B79C6 /* Controllers */,
+				FC82348F14933EE0008B79C6 /* Layers */,
+				FCE8E293148C9B51002F8D0B /* Game.h */,
+				FCE8E294148C9B51002F8D0B /* Game.m */,
 				4138E07F148B4E31006DAA6D /* AppDelegate.h */,
 				4138E080148B4E31006DAA6D /* AppDelegate.mm */,
 				4138E082148B4E31006DAA6D /* RootViewController.h */,
@@ -548,6 +571,11 @@
 		4138DEBB148B4E2E006DAA6D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FCE8E296148C9F57002F8D0B /* stars.png */,
+				FC8234A01493488E008B79C6 /* 64_white.png */,
+				FC8234A11493488E008B79C6 /* 128_white.png */,
+				FC82349C149346F9008B79C6 /* digits.fnt */,
+				FC82349D149346F9008B79C6 /* digits.png */,
 				4138DEBC148B4E2E006DAA6D /* Default.png */,
 				4138DEBE148B4E2E006DAA6D /* fps_images.png */,
 				4138DEC0148B4E2E006DAA6D /* Icon-72.png */,
@@ -1003,6 +1031,24 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		FC82348F14933EE0008B79C6 /* Layers */ = {
+			isa = PBXGroup;
+			children = (
+				FC82349114933F22008B79C6 /* ControllerLayer.h */,
+				FC82349214933F22008B79C6 /* ControllerLayer.mm */,
+			);
+			name = Layers;
+			sourceTree = "<group>";
+		};
+		FC82349814934328008B79C6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FC82349914934363008B79C6 /* SneakyPad.h */,
+				FC82349A14934363008B79C6 /* SneakyPad.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1063,6 +1109,11 @@
 				4138DECB148B4E2E006DAA6D /* Icon@2x.png in Resources */,
 				4138DECE148B4E2E006DAA6D /* iTunesArtwork in Resources */,
 				4138E08D148B4E31006DAA6D /* blocks.png in Resources */,
+				FCE8E297148C9F57002F8D0B /* stars.png in Resources */,
+				FC82349E149346F9008B79C6 /* digits.fnt in Resources */,
+				FC82349F149346F9008B79C6 /* digits.png in Resources */,
+				FC8234A21493488E008B79C6 /* 64_white.png in Resources */,
+				FC8234A31493488E008B79C6 /* 128_white.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1207,6 +1258,9 @@
 				4138E084148B4E31006DAA6D /* RootViewController.m in Sources */,
 				4138E087148B4E31006DAA6D /* HelloWorldLayer.mm in Sources */,
 				4138E08A148B4E31006DAA6D /* GLES-Render.mm in Sources */,
+				FCE8E295148C9B51002F8D0B /* Game.m in Sources */,
+				FC82349314933F22008B79C6 /* ControllerLayer.mm in Sources */,
+				FC82349B14934363008B79C6 /* SneakyPad.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
