@@ -1,10 +1,9 @@
-/*
- * Climbers
- * https://www.github.com/haqu/climbers
- *
- * Copyright (c) 2011 Sergey Tikhonov
- *
- */
+//
+//  Game.m
+//
+//  Created by Jon on 3/9/11.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//
 
 #import "Game.h"
 #import "GameConfig.h"
@@ -28,6 +27,8 @@ enum {
 	kTagFlowerPS,
 };
 
+
+
 @interface Game()
 - (void)loadLevel;
 - (void)resetLevel;
@@ -36,6 +37,7 @@ enum {
 @end
 
 @implementation Game
+@synthesize _playerSheet;
 
 + (CCScene*)scene {
 	CCScene *scene = [CCScene node];
@@ -62,6 +64,13 @@ enum {
 		[self addChild:label z:15];
 		starsCollectedLabel = [label retain];
 		
+        boidLayer = [BoidLayer alloc];
+        
+        self._playerSheet = [CCSpriteBatchNode batchNodeWithFile:@"blocks.png" capacity:150];
+		[self addChild:_playerSheet z:1 tag:0];
+        
+		boidLayer->_playerSheet = self._playerSheet;
+        
 		// arrays
 		currentLevel = 0;
 		nextLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentLevel"];
@@ -74,6 +83,8 @@ enum {
         controllerLayer = [ControllerLayer node];
 		[self addChild:controllerLayer z:3 tag:6];
 		
+        
+        self.scale = 0.5;
 		[self schedule:@selector(update:)];
 	}
 	return self;
@@ -87,7 +98,11 @@ enum {
 }
 
 - (void)loadLevel {
+	CCLOG(@"Loading Level");
 
+	[boidLayer CreateBoidPlayers:nil PlayerNumbers:10];
+	
+	[self addChild:boidLayer z:-7 tag:5];//z:3 tag:5
 }
 
 - (void)resetLevel {
@@ -190,6 +205,9 @@ enum {
 		// standing on top
 
 	}
+    
+    //Update the state of the Boids
+	if (boidLayer != nil)[boidLayer UpdateBoids];
 }
 
 //- (void)registerWithTouchDispatcher {

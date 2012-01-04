@@ -165,6 +165,9 @@
 		FC82349F149346F9008B79C6 /* digits.png in Resources */ = {isa = PBXBuildFile; fileRef = FC82349D149346F9008B79C6 /* digits.png */; };
 		FC8234A21493488E008B79C6 /* 64_white.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8234A01493488E008B79C6 /* 64_white.png */; };
 		FC8234A31493488E008B79C6 /* 128_white.png in Resources */ = {isa = PBXBuildFile; fileRef = FC8234A11493488E008B79C6 /* 128_white.png */; };
+		FC8234BB14988605008B79C6 /* Boid.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC8234BA14988605008B79C6 /* Boid.mm */; };
+		FC8234BE149887A5008B79C6 /* BoidHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC8234BD149887A5008B79C6 /* BoidHelper.mm */; };
+		FC8234C114988886008B79C6 /* BoidLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC8234C014988886008B79C6 /* BoidLayer.mm */; };
 		FCE8E295148C9B51002F8D0B /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE8E294148C9B51002F8D0B /* Game.m */; };
 		FCE8E297148C9F57002F8D0B /* stars.png in Resources */ = {isa = PBXBuildFile; fileRef = FCE8E296148C9F57002F8D0B /* stars.png */; };
 /* End PBXBuildFile section */
@@ -489,8 +492,14 @@
 		FC82349D149346F9008B79C6 /* digits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = digits.png; sourceTree = "<group>"; };
 		FC8234A01493488E008B79C6 /* 64_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 64_white.png; sourceTree = "<group>"; };
 		FC8234A11493488E008B79C6 /* 128_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 128_white.png; sourceTree = "<group>"; };
+		FC8234B914988605008B79C6 /* Boid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Boid.h; path = Flocking/Boid.h; sourceTree = "<group>"; };
+		FC8234BA14988605008B79C6 /* Boid.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Boid.mm; path = Flocking/Boid.mm; sourceTree = "<group>"; };
+		FC8234BC149887A4008B79C6 /* BoidHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoidHelper.h; path = Flocking/BoidHelper.h; sourceTree = "<group>"; };
+		FC8234BD149887A5008B79C6 /* BoidHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BoidHelper.mm; path = Flocking/BoidHelper.mm; sourceTree = "<group>"; };
+		FC8234BF14988886008B79C6 /* BoidLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoidLayer.h; path = Layers/BoidLayer.h; sourceTree = "<group>"; };
+		FC8234C014988886008B79C6 /* BoidLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BoidLayer.mm; path = Layers/BoidLayer.mm; sourceTree = "<group>"; };
 		FCE8E293148C9B51002F8D0B /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
-		FCE8E294148C9B51002F8D0B /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
+		FCE8E294148C9B51002F8D0B /* Game.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = Game.m; sourceTree = "<group>"; };
 		FCE8E296148C9F57002F8D0B /* stars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stars.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -548,6 +557,7 @@
 		4138DEBA148B4E2E006DAA6D /* SalvaElCuerpo */ = {
 			isa = PBXGroup;
 			children = (
+				FC8234AC14988129008B79C6 /* Flocking */,
 				FC82349814934328008B79C6 /* Controllers */,
 				FC82348F14933EE0008B79C6 /* Layers */,
 				FCE8E293148C9B51002F8D0B /* Game.h */,
@@ -1036,6 +1046,8 @@
 			children = (
 				FC82349114933F22008B79C6 /* ControllerLayer.h */,
 				FC82349214933F22008B79C6 /* ControllerLayer.mm */,
+				FC8234BF14988886008B79C6 /* BoidLayer.h */,
+				FC8234C014988886008B79C6 /* BoidLayer.mm */,
 			);
 			name = Layers;
 			sourceTree = "<group>";
@@ -1047,6 +1059,17 @@
 				FC82349A14934363008B79C6 /* SneakyPad.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		FC8234AC14988129008B79C6 /* Flocking */ = {
+			isa = PBXGroup;
+			children = (
+				FC8234B914988605008B79C6 /* Boid.h */,
+				FC8234BA14988605008B79C6 /* Boid.mm */,
+				FC8234BC149887A4008B79C6 /* BoidHelper.h */,
+				FC8234BD149887A5008B79C6 /* BoidHelper.mm */,
+			);
+			name = Flocking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1261,6 +1284,9 @@
 				FCE8E295148C9B51002F8D0B /* Game.m in Sources */,
 				FC82349314933F22008B79C6 /* ControllerLayer.mm in Sources */,
 				FC82349B14934363008B79C6 /* SneakyPad.m in Sources */,
+				FC8234BB14988605008B79C6 /* Boid.mm in Sources */,
+				FC8234BE149887A5008B79C6 /* BoidHelper.mm in Sources */,
+				FC8234C114988886008B79C6 /* BoidLayer.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
