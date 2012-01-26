@@ -37,7 +37,7 @@ enum {
 @end
 
 @implementation Game
-@synthesize _playerSheet;
+
 
 + (CCScene*)scene {
 	CCScene *scene = [CCScene node];
@@ -55,6 +55,12 @@ enum {
 		sh = screenSize.height;
 		
 
+        gameLayer = [GameLayer node];
+        [self addChild:gameLayer z:5];
+        
+        worldLayer = [WorldLayer node];
+        [self addChild:worldLayer z:6];
+        
 		// star counter
 		//float fontSize = 12;
 		CCLabelBMFont *label = [CCLabelBMFont labelWithString:@"0/0" fntFile:@"digits.fnt"];
@@ -64,13 +70,7 @@ enum {
 		[self addChild:label z:15];
 		starsCollectedLabel = [label retain];
 		
-        boidLayer = [BoidLayer alloc];
-        
-        self._playerSheet = [CCSpriteBatchNode batchNodeWithFile:@"blocks.png" capacity:150];
-		[self addChild:_playerSheet z:1 tag:0];
-        
-		boidLayer->_playerSheet = self._playerSheet;
-        
+                
 		// arrays
 		currentLevel = 0;
 		nextLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentLevel"];
@@ -84,7 +84,7 @@ enum {
 		[self addChild:controllerLayer z:3 tag:6];
 		
         
-        self.scale = 0.5;
+        //self.scale = 0.5;
 		[self schedule:@selector(update:)];
 	}
 	return self;
@@ -97,12 +97,13 @@ enum {
 	[super dealloc];
 }
 
-- (void)loadLevel {
-	CCLOG(@"Loading Level");
 
-	[boidLayer CreateBoidPlayers:nil PlayerNumbers:10];
-	
-	[self addChild:boidLayer z:-7 tag:5];//z:3 tag:5
+- (void)loadLevel
+{
+    // Call the load level from the game layer
+    // ** Might need to change this here for more logical calls
+    [gameLayer loadLevel];
+    [worldLayer GenerateVessel];
 }
 
 - (void)resetLevel {
@@ -207,7 +208,9 @@ enum {
 	}
     
     //Update the state of the Boids
-	if (boidLayer != nil)[boidLayer UpdateBoids];
+	//if (boidLayer != nil)[boidLayer UpdateBoids];
+    [gameLayer update];
+    [worldLayer update:dt];
 }
 
 //- (void)registerWithTouchDispatcher {

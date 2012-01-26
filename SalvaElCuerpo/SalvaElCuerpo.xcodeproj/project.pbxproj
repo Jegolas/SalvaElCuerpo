@@ -159,6 +159,10 @@
 		4138E087148B4E31006DAA6D /* HelloWorldLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4138E086148B4E31006DAA6D /* HelloWorldLayer.mm */; };
 		4138E08A148B4E31006DAA6D /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4138E089148B4E31006DAA6D /* GLES-Render.mm */; };
 		4138E08D148B4E31006DAA6D /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = 4138E08C148B4E31006DAA6D /* blocks.png */; };
+		4194B96B14CCC51400B92E2C /* GameLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4194B96A14CCC51400B92E2C /* GameLayer.mm */; };
+		4194B97014CD440200B92E2C /* Vessel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4194B96F14CD440200B92E2C /* Vessel.mm */; };
+		4194B97414CD450A00B92E2C /* BodyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4194B97314CD450A00B92E2C /* BodyInfo.m */; };
+		4194B97714D1256100B92E2C /* WorldLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4194B97614D1256100B92E2C /* WorldLayer.mm */; };
 		FC82349314933F22008B79C6 /* ControllerLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC82349214933F22008B79C6 /* ControllerLayer.mm */; };
 		FC82349B14934363008B79C6 /* SneakyPad.m in Sources */ = {isa = PBXBuildFile; fileRef = FC82349A14934363008B79C6 /* SneakyPad.m */; };
 		FC82349E149346F9008B79C6 /* digits.fnt in Resources */ = {isa = PBXBuildFile; fileRef = FC82349C149346F9008B79C6 /* digits.fnt */; };
@@ -484,6 +488,14 @@
 		4138E089148B4E31006DAA6D /* GLES-Render.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "GLES-Render.mm"; sourceTree = "<group>"; };
 		4138E08B148B4E31006DAA6D /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
 		4138E08C148B4E31006DAA6D /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
+		4194B96914CCC51400B92E2C /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameLayer.h; path = Layers/GameLayer.h; sourceTree = "<group>"; };
+		4194B96A14CCC51400B92E2C /* GameLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = GameLayer.mm; path = Layers/GameLayer.mm; sourceTree = "<group>"; };
+		4194B96E14CD440200B92E2C /* Vessel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vessel.h; path = PhysicsItems/Vessel.h; sourceTree = "<group>"; };
+		4194B96F14CD440200B92E2C /* Vessel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Vessel.mm; path = PhysicsItems/Vessel.mm; sourceTree = "<group>"; };
+		4194B97214CD450A00B92E2C /* BodyInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BodyInfo.h; path = Helpers/BodyInfo.h; sourceTree = "<group>"; };
+		4194B97314CD450A00B92E2C /* BodyInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BodyInfo.m; path = Helpers/BodyInfo.m; sourceTree = "<group>"; };
+		4194B97514D1256000B92E2C /* WorldLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorldLayer.h; path = Layers/WorldLayer.h; sourceTree = "<group>"; };
+		4194B97614D1256100B92E2C /* WorldLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = WorldLayer.mm; path = Layers/WorldLayer.mm; sourceTree = "<group>"; };
 		FC82349114933F22008B79C6 /* ControllerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ControllerLayer.h; path = Layers/ControllerLayer.h; sourceTree = "<group>"; };
 		FC82349214933F22008B79C6 /* ControllerLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ControllerLayer.mm; path = Layers/ControllerLayer.mm; sourceTree = "<group>"; };
 		FC82349914934363008B79C6 /* SneakyPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SneakyPad.h; path = Controllers/SneakyPad.h; sourceTree = "<group>"; };
@@ -557,6 +569,8 @@
 		4138DEBA148B4E2E006DAA6D /* SalvaElCuerpo */ = {
 			isa = PBXGroup;
 			children = (
+				4194B97114CD44CD00B92E2C /* Helpers */,
+				4194B96D14CD439900B92E2C /* PhysicsItems */,
 				FC8234AC14988129008B79C6 /* Flocking */,
 				FC82349814934328008B79C6 /* Controllers */,
 				FC82348F14933EE0008B79C6 /* Layers */,
@@ -1041,6 +1055,24 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		4194B96D14CD439900B92E2C /* PhysicsItems */ = {
+			isa = PBXGroup;
+			children = (
+				4194B96E14CD440200B92E2C /* Vessel.h */,
+				4194B96F14CD440200B92E2C /* Vessel.mm */,
+			);
+			name = PhysicsItems;
+			sourceTree = "<group>";
+		};
+		4194B97114CD44CD00B92E2C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4194B97214CD450A00B92E2C /* BodyInfo.h */,
+				4194B97314CD450A00B92E2C /* BodyInfo.m */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		FC82348F14933EE0008B79C6 /* Layers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1048,6 +1080,10 @@
 				FC82349214933F22008B79C6 /* ControllerLayer.mm */,
 				FC8234BF14988886008B79C6 /* BoidLayer.h */,
 				FC8234C014988886008B79C6 /* BoidLayer.mm */,
+				4194B96914CCC51400B92E2C /* GameLayer.h */,
+				4194B96A14CCC51400B92E2C /* GameLayer.mm */,
+				4194B97514D1256000B92E2C /* WorldLayer.h */,
+				4194B97614D1256100B92E2C /* WorldLayer.mm */,
 			);
 			name = Layers;
 			sourceTree = "<group>";
@@ -1287,6 +1323,10 @@
 				FC8234BB14988605008B79C6 /* Boid.mm in Sources */,
 				FC8234BE149887A5008B79C6 /* BoidHelper.mm in Sources */,
 				FC8234C114988886008B79C6 /* BoidLayer.mm in Sources */,
+				4194B96B14CCC51400B92E2C /* GameLayer.mm in Sources */,
+				4194B97014CD440200B92E2C /* Vessel.mm in Sources */,
+				4194B97414CD450A00B92E2C /* BodyInfo.m in Sources */,
+				4194B97714D1256100B92E2C /* WorldLayer.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
