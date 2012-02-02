@@ -26,5 +26,7 @@
 }
 
 -(id) CreateVessel:(b2World *) world spawnPoint:(CGPoint) spawnPoint;
+-(void)updateVessel: (float) timon_rotation :(float) power_lever;
+-(void)killOrthogonalVelocity:(b2Body * ) targetBody;
 
 @end

@@ -10,6 +10,7 @@
 #import "Box2D.h"
 #import "GLES-Render.h"
 #import "Vessel.h"
+#import "SneakyPad.h"
 
 @interface WorldLayer : CCLayer
 {
@@ -17,6 +18,8 @@
     GLESDebugDraw *m_debugDraw;
 @public
 	b2World* world;
+    SneakyPad * leftJoystick;
+	SneakyPad * rightJoystick;
 }
 
 @property (nonatomic) b2World *world;

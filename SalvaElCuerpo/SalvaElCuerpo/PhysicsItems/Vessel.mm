@@ -137,4 +137,48 @@
     }
     return self;
 }
+
+-(void) killOrthogonalVelocity: (b2Body*) targetBody
+{
+	b2Vec2 localPoint(0,0);
+	b2Vec2 velocity = targetBody->GetLinearVelocityFromLocalPoint(localPoint);
+    b2Vec2 sidewaysAxis = targetBody->GetTransform().R.col2;
+    sidewaysAxis *= b2Dot(velocity,sidewaysAxis);
+    targetBody->SetLinearVelocity(sidewaysAxis);
+}
+
+-(void)updateVessel: (float) timon_rotation :(float) power_lever
+{
+	b2Vec2 ldirection = wheel1->GetTransform().R.col2;
+	ldirection *= engineSpeed;
+	wheel1->ApplyForce(ldirection, wheel1->GetPosition());
+    
+	[self killOrthogonalVelocity:wheel1];
+	[self killOrthogonalVelocity:wheel2];
+	[self killOrthogonalVelocity:wheel3];
+	
+	float32 mspeed = (timon_rotation)/5.0f  - m_joint->GetJointAngle();
+	m_joint->SetMotorSpeed(mspeed*1.5f);// * 1.5f);
+	
+	//NSLog(@"mspeed,ja,tr = %f, %f, %f", mspeed, m_joint->GetJointAngle(), timon_rotation);
+	
+	// Use the power lever to power the boat
+	
+	if (power_lever > 0.0)
+	{
+		engineSpeed = power_lever*2.0f;
+	}
+	else if (power_lever < 0.0)
+	{
+		engineSpeed = power_lever*1.0f;
+	}
+	
+	
+	if (engineSpeed>= 20.0)
+	{
+		engineSpeed = 20.0f;
+	}
+	
+}
+
 @end

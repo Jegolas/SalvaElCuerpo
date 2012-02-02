@@ -67,9 +67,26 @@
 -(void) update: (ccTime)dt{
     int32 velocityIterations = 3;
     int32 positionIterrations = 2;
+    float timon_rotation = 0.0;
+    float power_lever = 0.0;
     
     if (world != Nil){
         world->Step(dt, velocityIterations, positionIterrations);
+    }
+    if (leftJoystick != Nil)
+    {
+        CGPoint scaledVelocity = ccpMult(leftJoystick.velocity, 520.0f); //240.0.  The higher the number, the higher the angle here
+        timon_rotation = scaledVelocity.x*dt;
+        //NSLog(@"velo x:%f  velo y:%f ", leftJoystick.velocity.x, leftJoystick.velocity.y);
+    }
+    if (rightJoystick != Nil)
+    {
+        CGPoint scaledVelocity = ccpMult(rightJoystick.velocity, 520.0f); //240.0
+        power_lever = scaledVelocity.y*dt;
+    }
+    // Update the vessel if present
+    if (vessel != Nil){
+        [vessel updateVessel:timon_rotation :power_lever];
     }
 }
 

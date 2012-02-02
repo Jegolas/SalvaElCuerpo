@@ -84,6 +84,10 @@ enum {
 		[self addChild:controllerLayer z:3 tag:6];
 		
         
+        //Pass in the controllers to the WorldLayer
+        worldLayer->leftJoystick = controllerLayer->leftJoystick;
+        worldLayer->rightJoystick = controllerLayer->rightJoystick;
+        
         //self.scale = 0.5;
 		[self schedule:@selector(update:)];
 	}
