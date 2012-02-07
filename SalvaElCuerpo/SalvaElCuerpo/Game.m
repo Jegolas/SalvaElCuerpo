@@ -211,6 +211,10 @@ enum {
 
 	}
     
+    // When the vessel is moving, we need to move the camere position
+    // Check the location of the mainbody for the vessel and move the camera accordingly
+    //[gameLayer updateCamera];
+    
     //Update the state of the Boids
 	//if (boidLayer != nil)[boidLayer UpdateBoids];
     [gameLayer update];

@@ -45,6 +45,15 @@
 	[boidLayer CreateBoidPlayers:nil PlayerNumbers:10];
 	
 	[self addChild:boidLayer z:-7 tag:5];//z:3 tag:5
+    cameraOffset = CGPointZero;
+    self.position = CGPointZero;
+}
+
+- (void)updateCamera {
+    //	NSLog(@"self.position = (%f, %f)",self.position.x,self.position.y);
+	id move = [CCMoveTo actionWithDuration:2 position:ccpNeg(cameraOffset)];
+	id ease = [CCEaseInOut actionWithAction:move rate:2];
+	[self runAction:ease];
 }
 
 - (void)update{

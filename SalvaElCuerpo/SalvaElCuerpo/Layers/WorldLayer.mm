@@ -29,7 +29,7 @@
 {
     // Define the gravity vector.
 	b2Vec2 gravity;
-	gravity.Set(0.1f, 0.1f);
+	gravity.Set(0.0f, 0.0f);
 	
 	// Do we want to let bodies sleep?
 	// This will speed up the physics simulation
@@ -72,7 +72,14 @@
     
     if (world != Nil){
         world->Step(dt, velocityIterations, positionIterrations);
+        
+        // Loop through the world objects and find the main body
+        // This body needs to have it's position stored at all times so we know where it is
     }
+    
+    
+    
+    // Controllers
     if (leftJoystick != Nil)
     {
         CGPoint scaledVelocity = ccpMult(leftJoystick.velocity, 520.0f); //240.0.  The higher the number, the higher the angle here

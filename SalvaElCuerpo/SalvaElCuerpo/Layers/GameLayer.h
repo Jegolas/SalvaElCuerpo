@@ -14,9 +14,12 @@
     float sw;
     float sh;
     BoidLayer* boidLayer;
+    CGPoint cameraOffset;
 }
 
 @property(nonatomic, assign) CCSpriteBatchNode* _playerSheet;
 - (void)loadLevel;
 - (void)update;
+- (void)updateCamera;
+
 @end
