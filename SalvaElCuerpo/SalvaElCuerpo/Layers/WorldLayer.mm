@@ -75,6 +75,21 @@
         
         // Loop through the world objects and find the main body
         // This body needs to have it's position stored at all times so we know where it is
+        
+        for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
+        {
+            BodyInfo* myActor = (BodyInfo*)b->GetUserData();
+            if (myActor != Nil){
+                if (myActor->bodyType == MainBody)
+                {
+                    // Get the body location
+                    //NSLog(@"x=%f, y=%f",b->GetPosition().x*PTM_RATIO, b->GetPosition().y*PTM_RATIO );
+                    bodyPosition = new b2Vec2(b->GetPosition().x*PTM_RATIO, b->GetPosition().y*PTM_RATIO);
+                    // No need to look further
+                    break;
+                }
+            }
+        }
     }
     
     
