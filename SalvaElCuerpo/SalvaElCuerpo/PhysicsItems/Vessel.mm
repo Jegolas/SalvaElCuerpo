@@ -17,10 +17,12 @@
     self = [super init];
 	if (self != nil) 
 	{
+        float scale = 2.0f;
+        
 		BodyInfo * bi = [[BodyInfo alloc] init];
 		bi->bodyType = MainBody;
 		b2PolygonShape shape_body;
-		shape_body.SetAsBox(30.0f/PTM_RATIO, 50.0f/PTM_RATIO);
+		shape_body.SetAsBox((30.0f/PTM_RATIO)/scale, (50.0f/PTM_RATIO)/scale);
 		
 		b2FixtureDef fd;
 		fd.shape = &shape_body;
@@ -28,7 +30,7 @@
 		
 		b2BodyDef bd;
 		bd.type = b2_dynamicBody;
-		bd.position.Set(180.0f/PTM_RATIO, 100.0f/PTM_RATIO);
+		bd.position.Set((180.0f/PTM_RATIO)/scale, (100.0f/PTM_RATIO)/scale);
 		vehicle_body = world->CreateBody(&bd);
 		vehicle_body->SetUserData(bi);
 		body_fixture = vehicle_body->CreateFixture(&fd);
@@ -39,9 +41,9 @@
 		
 		// Wheel 1 (this is going to be my motor wheel)
 		b2PolygonShape shape_left_wheel;
-		shape_left_wheel.SetAsBox(10.0f/PTM_RATIO, 15.0f/PTM_RATIO);
+		shape_left_wheel.SetAsBox((10.0f/PTM_RATIO)/scale, (15.0f/PTM_RATIO)/scale);
 		fd.shape = &shape_left_wheel;
-		bd.position.Set(bd.position.x/PTM_RATIO + 175.0f/PTM_RATIO, bd.position.y/PTM_RATIO + 30.0f/PTM_RATIO);
+		bd.position.Set((bd.position.x/PTM_RATIO + 175.0f/PTM_RATIO)/scale, (bd.position.y/PTM_RATIO + 30.0f/PTM_RATIO)/scale);
 		wheel1 = world->CreateBody(&bd);
 		bi = [[BodyInfo alloc] init];
 		bi->bodyType = Engine;
@@ -66,9 +68,9 @@
 		
 		// Wheel 2
 		b2PolygonShape shape_right_wheel;
-		shape_right_wheel.SetAsBox(5.0f/PTM_RATIO, 10.0f/PTM_RATIO);
+		shape_right_wheel.SetAsBox((5.0f/PTM_RATIO)/scale, (10.0f/PTM_RATIO)/scale);
 		fd.shape = &shape_right_wheel;
-		bd.position.Set(180.0f/PTM_RATIO - 10.0f/PTM_RATIO, 100.0f/PTM_RATIO + 20.0f/PTM_RATIO);
+		bd.position.Set((180.0f/PTM_RATIO - 10.0f/PTM_RATIO)/scale, (100.0f/PTM_RATIO + 20.0f/PTM_RATIO)/scale);
 		wheel2  = world->CreateBody(&bd);
 		wheel2 ->CreateFixture(&fd);
 		
@@ -88,9 +90,9 @@
 		
 		// Wheel 3
 		b2PolygonShape shape_middle_wheel;
-		shape_middle_wheel.SetAsBox(5.0f/PTM_RATIO, 10.0f/PTM_RATIO);
+		shape_middle_wheel.SetAsBox((5.0f/PTM_RATIO)/scale, (10.0f/PTM_RATIO)/scale);
 		fd.shape = &shape_middle_wheel;
-		bd.position.Set(180.0f/PTM_RATIO + 10.0f/PTM_RATIO, 100.0f/PTM_RATIO + 20.0f/PTM_RATIO);
+		bd.position.Set((180.0f/PTM_RATIO + 10.0f/PTM_RATIO)/scale, (100.0f/PTM_RATIO + 20.0f/PTM_RATIO)/scale);
 		wheel3 = world->CreateBody(&bd);
 		wheel3->CreateFixture(&fd);
 		
@@ -114,7 +116,7 @@
 			bi->bodyType = Sensor;
 			
             b2PolygonShape shape_body;
-            shape_body.SetAsBox(20.0/PTM_RATIO, 30.0/PTM_RATIO);
+            shape_body.SetAsBox((20.0/PTM_RATIO)/scale, (30.0/PTM_RATIO)/scale);
             
             b2FixtureDef fd;
 			fd.shape = &shape_body;
@@ -123,7 +125,7 @@
 			
 			b2BodyDef bd;
 			bd.type = b2_dynamicBody;
-			bd.position.Set(180.0f/PTM_RATIO+53.0f/PTM_RATIO, 100.0f/PTM_RATIO - 10.0f/PTM_RATIO);
+			bd.position.Set((180.0f/PTM_RATIO+53.0f/PTM_RATIO)/scale, (100.0f/PTM_RATIO - 10.0f/PTM_RATIO)/scale);
 			b2Body*  sensor1 = world->CreateBody(&bd);
 			sensor1->SetUserData(bi);
 			sensor1->CreateFixture(&fd);
