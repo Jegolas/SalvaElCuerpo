@@ -9,7 +9,8 @@
 #import "ControllerLayer.h"
 #import "BoidLayer.h"
 #import "GameLayer.h"
-#import "WorldLayer.h"
+#import "Box2D.h"
+#import "GLES-Render.h"
 
 @interface Game : CCLayer {
 	float levelHeight;
@@ -23,7 +24,9 @@
 	CCSprite *menuButton;
     ControllerLayer* controllerLayer;
     GameLayer* gameLayer;
-    WorldLayer* worldLayer;
+    b2World* world;
+    GLESDebugDraw *m_debugDraw;
+
 }
 + (CCScene*)scene;
 

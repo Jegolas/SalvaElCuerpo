@@ -82,10 +82,16 @@
             if (myActor != Nil){
                 if (myActor->bodyType == MainBody)
                 {
+                    bodyPosition = new CGPoint();
                     // Get the body location
+                    b2Vec2 bpos = b->GetPosition();
+                    
                     //NSLog(@"x=%f, y=%f",b->GetPosition().x*PTM_RATIO, b->GetPosition().y*PTM_RATIO );
-                    bodyPosition = new b2Vec2(b->GetPosition().x*PTM_RATIO, b->GetPosition().y*PTM_RATIO);
+                    CGPoint relativePoint = ccp(((-bpos.x*PTM_RATIO)+250.0), ((-bpos.y*PTM_RATIO)+140));
+                    bodyPosition->x = relativePoint.x;
+                    bodyPosition->y = relativePoint.y;
                     // No need to look further
+                    [self setPosition:relativePoint];
                     break;
                 }
             }

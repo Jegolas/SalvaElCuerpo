@@ -12,10 +12,14 @@
 
 @interface ControllerLayer : CCLayer {
 	CCSprite *pauseButton;
-@public
-	SneakyPad * leftJoystick;
+    SneakyPad * leftJoystick;
 	SneakyPad * rightJoystick;
+
+@public
 	CCSprite* bodysprite;
 }
+
+@property (nonatomic, readonly) SneakyPad *leftJoystick;
+@property (nonatomic, readonly) SneakyPad *rightJoystick;
 
 @end

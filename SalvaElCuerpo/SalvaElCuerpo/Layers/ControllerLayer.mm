@@ -9,7 +9,8 @@
 #import "ControllerLayer.h"
 
 @implementation ControllerLayer
-
+@synthesize leftJoystick;
+@synthesize rightJoystick;
 -(id)init{
 	
 	self = [super init];

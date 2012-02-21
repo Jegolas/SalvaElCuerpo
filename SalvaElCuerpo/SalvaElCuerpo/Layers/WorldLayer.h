@@ -20,7 +20,7 @@
 	b2World* world;
     SneakyPad * leftJoystick;
 	SneakyPad * rightJoystick;
-    b2Vec2 *bodyPosition;
+    CGPoint *bodyPosition;
 }
 
 @property (nonatomic) b2World *world;

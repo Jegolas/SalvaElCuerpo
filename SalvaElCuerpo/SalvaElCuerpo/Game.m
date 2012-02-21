@@ -14,6 +14,8 @@
 #define kFontName @"Arial"
 #endif
 
+#define PTM_RATIO 32 // This is for the physics implementation.
+
 #define kNumLevels 15
 
 enum {
@@ -34,6 +36,7 @@ enum {
 - (void)resetLevel;
 - (void)sparkleAt:(CGPoint)p;
 - (void)showPopupMenu;
+- (void)CreateWorld;
 @end
 
 @implementation Game
@@ -54,12 +57,19 @@ enum {
 		sw = screenSize.width;
 		sh = screenSize.height;
 		
+        // Create the physics world
+        [self CreateWorld];
 
+        //worldLayer = [WorldLayer node];
+        //[self addChild:worldLayer z:6];
+        
         gameLayer = [GameLayer node];
         [self addChild:gameLayer z:5];
+
+        // Pass the physics world to the layer
+        gameLayer->world = world;
         
-        worldLayer = [WorldLayer node];
-        [self addChild:worldLayer z:6];
+        //gameLayer->worldLayer = worldLayer;
         
 		// star counter
 		//float fontSize = 12;
@@ -84,9 +94,9 @@ enum {
 		[self addChild:controllerLayer z:3 tag:6];
 		
         
-        //Pass in the controllers to the WorldLayer
-        worldLayer->leftJoystick = controllerLayer->leftJoystick;
-        worldLayer->rightJoystick = controllerLayer->rightJoystick;
+        //Pass in the controllers to the GameLayer
+        gameLayer.leftJoystick = controllerLayer.leftJoystick;
+        gameLayer.rightJoystick = controllerLayer.rightJoystick;
         
         //self.scale = 0.5;
 		[self schedule:@selector(update:)];
@@ -107,7 +117,7 @@ enum {
     // Call the load level from the game layer
     // ** Might need to change this here for more logical calls
     [gameLayer loadLevel];
-    [worldLayer GenerateVessel];
+    //[worldLayer GenerateVessel];
 }
 
 - (void)resetLevel {
@@ -217,8 +227,17 @@ enum {
     
     //Update the state of the Boids
 	//if (boidLayer != nil)[boidLayer UpdateBoids];
-    [gameLayer update];
+    [gameLayer update:dt];
+    /*
     [worldLayer update:dt];
+    if (worldLayer->bodyPosition != nil)
+    {
+        gameLayer->cameraOffset.y = worldLayer->bodyPosition->y;
+        gameLayer->cameraOffset.x = worldLayer->bodyPosition->x;
+        [gameLayer updateCamera];
+        //NSLog(@"self.position = (%f, %f)",gameLayer->cameraOffset.x,gameLayer->cameraOffset.y);
+    }
+    */
 }
 
 //- (void)registerWithTouchDispatcher {
@@ -308,6 +327,9 @@ enum {
 	[alert release];
 }
 
+
+
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if(buttonIndex == 1) {
 		// main menu
@@ -319,6 +341,37 @@ enum {
 			gameInProgress = YES;
 		}
 	}
+}
+
+#pragma Physics Initialization
+// Create the World here
+-(void) CreateWorld
+{
+    // Define the gravity vector.
+	b2Vec2 gravity;
+	gravity.Set(0.0f, 0.0f);
+	
+	// Do we want to let bodies sleep?
+	// This will speed up the physics simulation
+	bool doSleep = true;
+	
+	// Construct a world object, which will hold and simulate the rigid bodies.
+	world = new b2World(gravity, doSleep);
+	
+	world->SetContinuousPhysics(true);
+	
+	// Debug Draw functions
+	m_debugDraw = new GLESDebugDraw( PTM_RATIO );
+	world->SetDebugDraw(m_debugDraw);
+	
+	uint32 flags = 0;
+	flags += b2DebugDraw::e_shapeBit;
+	//flags += b2DebugDraw::e_jointBit;
+	//flags += b2DebugDraw::e_aabbBit;
+	//flags += b2DebugDraw::e_pairBit;
+	//		flags += b2DebugDraw::e_centerOfMassBit;
+	m_debugDraw->SetFlags(flags);	
+    
 }
 
 @end
