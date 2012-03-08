@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="25" height="25" tilewidth="40" tileheight="40">
+ <tileset firstgid="1" name="NewTIles" tilewidth="40" tileheight="40">
+  <image source="FishTiles.png" trans="ff00ff"/>
+ </tileset>
+ <layer name="MainBackgroundTransparency" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA82Vyw4CIQxF0VGTWYwa243P//9M78ImjQGmhRJdnHBDmhQOzLBLKe0HcgBnsAFbMK1kMtRIlvHy6bGAIzgFZhmlB4MbuINrUJZReuT2SwYnuRrx2euKG1xF+fG66s3scMUOhzVXur/eb2mNuoaMrnR/cq63lL/v1doZUsOZ11z1nrPkmquo7HXVki2uav8JS03JFQe74h+6ooy3ljzqXunv91/ulWQuzI98z2dDjX7DvK6kh/eNeoCng9lZ/wJv0gQNDMQJAAA=
+  </data>
+ </layer>
+</map>

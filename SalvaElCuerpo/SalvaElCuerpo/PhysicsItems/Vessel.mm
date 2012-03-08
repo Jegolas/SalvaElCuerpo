@@ -26,7 +26,7 @@
 		
 		b2FixtureDef fd;
 		fd.shape = &shape_body;
-		fd.density = 1.5f;
+		fd.density = 10.5f;
 		
 		b2BodyDef bd;
 		bd.type = b2_dynamicBody;

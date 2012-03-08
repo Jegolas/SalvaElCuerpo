@@ -242,6 +242,105 @@
 	return self;
 }
 
+-(void) UpdateBoids: (CGPoint) location
+{
+	//CGSize screenSize = [[CCDirector sharedDirector] winSize];
+	//NSLog(@"Body x=%f, y=%f", location.x, location.y);
+    
+	Boid* boid = _flockEnemyPointer;
+	while(boid)
+	{
+		Boid* b = boid;
+		boid = b->_next;
+		[b wander: 1.19f];
+		
+		[b
+		 flock:_flockEnemyPointer
+		 withSeparationWeight:5.5f // Make this higher
+		 andAlignmentWeight:1.05f // Make this low, they don't care where their neighbors are going
+		 andCohesionWeight:0.5f // Make this low they don't care to be close to their neighbors
+		 andSeparationDistance:5.0f //this is key
+		 andAlignmentDistance:4.0f // make this zero if you really dont care going where your neighbors are
+		 andCohesionDistance:1.5f // make this zero if you really dont care about staying close to one another
+		 ];
+		
+		//if (CCRANDOM_0_1() < 0.9){
+			[b seek:location usingMultiplier:1.35f];
+		//}
+		
+		[b update];
+	}
+    
+	
+	Boid* boidPlayer = _flockPlayerPointer;
+	//dude = ccp(400.0f, 300.0f);
+	//Boid* preBoid = _flockPlayerPointer;
+	while(boidPlayer)
+	{
+		Boid* b = boidPlayer;
+		boidPlayer = b->_next;
+        
+		[b wander: 1.19f];
+		
+		[b
+		 flock:_flockPlayerPointer
+		 withSeparationWeight:5.5f // Make this higher
+		 andAlignmentWeight:1.05f // Make this low, they don't care where their neighbors are going
+		 andCohesionWeight:0.5f // Make this low they don't care to be close to their neighbors
+		 andSeparationDistance:5.0f //this is key
+		 andAlignmentDistance:4.0f // make this zero if you really dont care going where your neighbors are
+		 andCohesionDistance:1.5f // make this zero if you really dont care about staying close to one another
+		 ];
+		
+		//if (CCRANDOM_0_1() < 0.9){
+        [b seek:location usingMultiplier:0.75f];
+		//}
+		
+		[b update];
+		
+		if (b.body != NULL)
+		{
+            /*
+             BodyInfo* bi = (BodyInfo*)b.body->GetUserData();
+             if (bi.touching == YES)
+             {
+             // Remove from the list
+             if (b->_prev == nil && b->_next == nil){
+             // We are at the head, see if there is a next, if not, remove the pointer
+             _flockPlayerPointer = nil;
+             }
+             else{ 
+             
+             // Fix the next node here so it knows to point to the prev node of the one
+             // we are removing
+             if(b->_next != nil){
+             b->_next->_prev = b->_prev;
+             
+             // Fix the head pointer removal
+             if (b->_prev == nil){
+             _flockPlayerPointer = b->_next;
+             }
+             }
+             // Fix the previous node here so it knows to point to the next node
+             // of the one we are removing
+             if (b->_prev != nil){
+             b->_prev->_next = b->_next;
+             }
+             
+             }
+             
+             [_playerSheet removeChild:b cleanup:YES];
+             //b = nil;
+             //[b dealloc];
+             //b = nil;
+             //[self removeChild:b cleanup:YES];
+             }
+             */
+		}
+		
+	}
+    
+}
 
 -(void) UpdateBoids
 {

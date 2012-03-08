@@ -29,5 +29,6 @@
 -(void) CreateBoidPlayers:(b2World *) world PlayerNumbers:(int) playerNumbers;
 -(void) CreateEnemyPlayers:(b2World *) world PlayerNumbers:(int) playerNumbers;
 -(void) UpdateBoids;
+-(void) UpdateBoids: (CGPoint) location;
 -(void) UpdateBoidsMenu;
 @end

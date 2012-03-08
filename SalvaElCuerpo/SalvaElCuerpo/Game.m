@@ -64,8 +64,11 @@ enum {
         //[self addChild:worldLayer z:6];
         
         gameLayer = [GameLayer node];
-        [self addChild:gameLayer z:5];
+        [self addChild:gameLayer z:1];
 
+        terrain = [TerrainLayer node];
+        [self addChild:terrain z:-1];
+        
         // Pass the physics world to the layer
         gameLayer->world = world;
         
@@ -97,6 +100,8 @@ enum {
         //Pass in the controllers to the GameLayer
         gameLayer.leftJoystick = controllerLayer.leftJoystick;
         gameLayer.rightJoystick = controllerLayer.rightJoystick;
+
+        gameLayer.terrain = terrain;
         
         //self.scale = 0.5;
 		[self schedule:@selector(update:)];

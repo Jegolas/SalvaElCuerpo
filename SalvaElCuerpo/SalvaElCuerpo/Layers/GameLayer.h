@@ -10,6 +10,7 @@
 #import "BoidLayer.h"
 #import "Vessel.h"
 #import "SneakyPad.h"
+#import "TerrainLayer.h"
 
 @interface GameLayer : CCLayer
 {
@@ -17,6 +18,9 @@
     float sh;
     BoidLayer* boidLayer;
     Vessel* vessel;
+    CCTMXTiledMap *_tileMap;
+    CCTMXLayer *_background;
+    CCLabelTTF *debugLabel;
 @public    
     CGPoint cameraOffset;
     b2World* world;
@@ -26,6 +30,12 @@
 @property(nonatomic, assign) CCSpriteBatchNode* _playerSheet;
 @property(nonatomic, assign) SneakyPad *leftJoystick;
 @property(nonatomic, assign) SneakyPad *rightJoystick;
+
+@property (nonatomic, retain) CCTMXTiledMap *tileMap;
+@property (nonatomic, retain) CCTMXLayer *background;
+
+@property (nonatomic, retain) TerrainLayer *terrain;
+
 - (void)loadLevel;
 - (void)update:(ccTime)dt;
 - (void)updateCamera;

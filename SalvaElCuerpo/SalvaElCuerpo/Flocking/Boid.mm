@@ -132,7 +132,7 @@
 	}
 	
 	_acceleration = CGPointZero;	
-	[self handleBorder];
+	//[self handleBorder];
 	
 	self.position = ccp(_internalPosition.x, _internalPosition.y);
     
