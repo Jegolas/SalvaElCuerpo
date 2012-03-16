@@ -14,12 +14,17 @@
 	CCSprite *pauseButton;
     SneakyPad * leftJoystick;
 	SneakyPad * rightJoystick;
-
+    float sw;
+    float sh;
+    CCLabelTTF *debugLabel;
+    CCSpriteBatchNode *batch1;
 @public
 	CCSprite* bodysprite;
 }
 
 @property (nonatomic, readonly) SneakyPad *leftJoystick;
 @property (nonatomic, readonly) SneakyPad *rightJoystick;
+@property (nonatomic, assign) CCLabelTTF *debugLabel;
+@property (nonatomic, assign) CCSpriteBatchNode *batch1;
 
 @end

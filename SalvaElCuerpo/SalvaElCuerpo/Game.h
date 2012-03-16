@@ -28,7 +28,7 @@
     b2World* world;
     GLESDebugDraw *m_debugDraw;
     TerrainLayer *terrain;
-
+    CCSpriteBatchNode *batch1;
 }
 + (CCScene*)scene;
 

@@ -20,7 +20,8 @@
     Vessel* vessel;
     CCTMXTiledMap *_tileMap;
     CCTMXLayer *_background;
-    CCLabelTTF *debugLabel;
+    CCSprite *snapFeedback;
+    CCSpriteBatchNode *batch1;
 @public    
     CGPoint cameraOffset;
     b2World* world;
@@ -30,10 +31,10 @@
 @property(nonatomic, assign) CCSpriteBatchNode* _playerSheet;
 @property(nonatomic, assign) SneakyPad *leftJoystick;
 @property(nonatomic, assign) SneakyPad *rightJoystick;
-
+@property(nonatomic, assign) CCLabelTTF *debugLabel;
 @property (nonatomic, retain) CCTMXTiledMap *tileMap;
 @property (nonatomic, retain) CCTMXLayer *background;
-
+@property (nonatomic, retain) CCSpriteBatchNode *batch1;
 @property (nonatomic, retain) TerrainLayer *terrain;
 
 - (void)loadLevel;

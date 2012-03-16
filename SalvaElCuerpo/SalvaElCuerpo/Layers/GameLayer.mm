@@ -26,6 +26,8 @@
 @synthesize tileMap = _tileMap;
 @synthesize background = _background;
 @synthesize terrain = _terrain;
+@synthesize debugLabel;
+@synthesize batch1;
 
 - (id)init {
 	if((self = [super init])) {
@@ -59,11 +61,17 @@
 		debugLabel = [label retain];
         */
         //[NSString stringWithFormat:@"x=%f, y=%f", bodyPosition->x, bodyPosition->y]
-        CCLabelTTF *label = [CCLabelTTF labelWithString:@"dude" fontName:@"Arial" fontSize:10];
-        label.color = ccc3(240, 0, 0);
-        label.position = ccp(sw/2, sh*7/8-self.position.y);
-        [self addChild:label z:12];
-        debugLabel = [label retain];
+
+        
+        // sprite sheet
+		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sprites.plist"];
+		batch1 = [[CCSpriteBatchNode alloc] initWithFile:@"sprites.png" capacity:50];
+		[self addChild:batch1];
+        
+        // snap feedback
+		snapFeedback = [[CCSprite alloc] initWithSpriteFrameName:@"snapFeedback.png"];
+		[batch1 addChild:snapFeedback];
+		snapFeedback.opacity = 0;
     }
     
     return self;
@@ -172,7 +180,7 @@
     }
     if (rightJoystick != Nil)
     {
-        CGPoint scaledVelocity = ccpMult(rightJoystick.velocity, 40.0f); //240.0
+        CGPoint scaledVelocity = ccpMult(rightJoystick.velocity, 140.0f); //240.0
         power_lever = scaledVelocity.y*dt;
     }
 
@@ -186,8 +194,21 @@
         [_terrain update:dt position:*bodyPosition];
     }
 
+    // Check the boids, see if the boat is close to them, if so, add a feedback to them
+    //float d = ccpDistance(bodyPosition, bodyPosition);
+    
+    float snapDist = sh*64.0f/1024;
+    float dist = 10.0f*CCRANDOM_0_1();
+    if(dist < snapDist) {
+        float t = (snapDist - dist)/snapDist;
+        snapFeedback.scale =  t*0.75f + 0.25f;
+        snapFeedback.opacity = t*255.0f;
+        snapFeedback.position = *bodyPosition;
+    }
 
-    debugLabel.string = [NSString stringWithFormat:@"x=%f, y=%f", bodyPosition->x, bodyPosition->y];
+    if (debugLabel != Nil){
+        debugLabel.string = [NSString stringWithFormat:@"x=%f, y=%f", bodyPosition->x, bodyPosition->y];
+    }
 }
 
 -(void) GenerateVessel
@@ -222,6 +243,7 @@
 {
     self.tileMap = nil;
     self.background = nil;
+    [snapFeedback release];
     [super dealloc];
 }
 @end

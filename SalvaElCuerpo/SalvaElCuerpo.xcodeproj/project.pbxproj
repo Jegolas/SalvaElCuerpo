@@ -166,6 +166,9 @@
 		4194B97014CD440200B92E2C /* Vessel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4194B96F14CD440200B92E2C /* Vessel.mm */; };
 		4194B97414CD450A00B92E2C /* BodyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4194B97314CD450A00B92E2C /* BodyInfo.m */; };
 		4194B97714D1256100B92E2C /* WorldLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4194B97614D1256100B92E2C /* WorldLayer.mm */; };
+		41D554211513074100C934ED /* rope.png in Resources */ = {isa = PBXBuildFile; fileRef = 41D5541E1513074100C934ED /* rope.png */; };
+		41D554221513074100C934ED /* sprites.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41D5541F1513074100C934ED /* sprites.plist */; };
+		41D554231513074100C934ED /* sprites.png in Resources */ = {isa = PBXBuildFile; fileRef = 41D554201513074100C934ED /* sprites.png */; };
 		41E95BFC1508883B006449C3 /* TerrainLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 41E95BFB1508883B006449C3 /* TerrainLayer.mm */; };
 		FC82349314933F22008B79C6 /* ControllerLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC82349214933F22008B79C6 /* ControllerLayer.mm */; };
 		FC82349B14934363008B79C6 /* SneakyPad.m in Sources */ = {isa = PBXBuildFile; fileRef = FC82349A14934363008B79C6 /* SneakyPad.m */; };
@@ -503,6 +506,9 @@
 		4194B97314CD450A00B92E2C /* BodyInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BodyInfo.m; path = Helpers/BodyInfo.m; sourceTree = "<group>"; };
 		4194B97514D1256000B92E2C /* WorldLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorldLayer.h; path = Layers/WorldLayer.h; sourceTree = "<group>"; };
 		4194B97614D1256100B92E2C /* WorldLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = WorldLayer.mm; path = Layers/WorldLayer.mm; sourceTree = "<group>"; };
+		41D5541E1513074100C934ED /* rope.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rope.png; sourceTree = "<group>"; };
+		41D5541F1513074100C934ED /* sprites.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sprites.plist; sourceTree = "<group>"; };
+		41D554201513074100C934ED /* sprites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sprites.png; sourceTree = "<group>"; };
 		41E95BFA1508883B006449C3 /* TerrainLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TerrainLayer.h; path = Layers/TerrainLayer.h; sourceTree = "<group>"; };
 		41E95BFB1508883B006449C3 /* TerrainLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = TerrainLayer.mm; path = Layers/TerrainLayer.mm; sourceTree = "<group>"; };
 		FC82349114933F22008B79C6 /* ControllerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ControllerLayer.h; path = Layers/ControllerLayer.h; sourceTree = "<group>"; };
@@ -606,6 +612,9 @@
 			children = (
 				4185700F1505DE41009DEB92 /* Noise.png */,
 				4185700A15049250009DEB92 /* FishTiles.png */,
+				41D5541E1513074100C934ED /* rope.png */,
+				41D5541F1513074100C934ED /* sprites.plist */,
+				41D554201513074100C934ED /* sprites.png */,
 				41857007150490D2009DEB92 /* FishTiles.tmx */,
 				FCE8E296148C9F57002F8D0B /* stars.png */,
 				FC8234A01493488E008B79C6 /* 64_white.png */,
@@ -1190,6 +1199,9 @@
 				41857008150490D2009DEB92 /* FishTiles.tmx in Resources */,
 				4185700B15049250009DEB92 /* FishTiles.png in Resources */,
 				418570101505DE41009DEB92 /* Noise.png in Resources */,
+				41D554211513074100C934ED /* rope.png in Resources */,
+				41D554221513074100C934ED /* sprites.plist in Resources */,
+				41D554231513074100C934ED /* sprites.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1397,7 +1409,7 @@
 				GCC_PREFIX_HEADER = SalvaElCuerpo/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = SalvaElCuerpo/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "\"SalvaElCuerpo/libs\"";
@@ -1414,7 +1426,7 @@
 				GCC_PREFIX_HEADER = SalvaElCuerpo/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = SalvaElCuerpo/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "\"SalvaElCuerpo/libs\"";

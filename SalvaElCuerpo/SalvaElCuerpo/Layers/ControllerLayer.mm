@@ -11,11 +11,19 @@
 @implementation ControllerLayer
 @synthesize leftJoystick;
 @synthesize rightJoystick;
+@synthesize debugLabel;
+@synthesize batch1;
+
 -(id)init{
 	
 	self = [super init];
 	if (self != nil) {
 		
+        CGSize screenSize = [[CCDirector sharedDirector] winSize];
+		sw = screenSize.width;
+		sh = screenSize.height;
+
+        
 		self.isTouchEnabled = YES;
 		self.isAccelerometerEnabled = NO;
         
@@ -44,11 +52,17 @@
          [self addChild:bodysprite z:1];
          */
 		// Create the pause button
-		pauseButton = [CCSprite spriteWithFile:@"Icon.png"];
+		//pauseButton = [CCSprite spriteWithFile:@"Icon.png"];
 		
-		[pauseButton setPosition:ccp(360.0, 250.0)];
-		[self addChild:pauseButton z:0];
+		//[pauseButton setPosition:ccp(360.0, 250.0)];
+		//[self addChild:pauseButton z:0];
 		
+        CCLabelTTF *label = [CCLabelTTF labelWithString:@"dude" fontName:@"Arial" fontSize:10];
+        label.color = ccc3(240, 0, 0);
+        label.position = ccp(sw/2, sh*7/8-self.position.y);
+        [self addChild:label z:12];
+        debugLabel = [label retain];
+         
 		//[self schedule:@selector(tick:) interval:1.0f/120.0f];
 	}
 	return self;
