@@ -18,6 +18,7 @@
     float sh;
     CCLabelTTF *debugLabel;
     CCSpriteBatchNode *batch1;
+    CCSprite *menuButton;
 @public
 	CCSprite* bodysprite;
 }
@@ -26,5 +27,7 @@
 @property (nonatomic, readonly) SneakyPad *rightJoystick;
 @property (nonatomic, assign) CCLabelTTF *debugLabel;
 @property (nonatomic, assign) CCSpriteBatchNode *batch1;
+
+- (void)showPopupMenu;
 
 @end

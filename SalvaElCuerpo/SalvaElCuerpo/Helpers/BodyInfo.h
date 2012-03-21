@@ -7,6 +7,8 @@
 //
 
 
+#include "cocos2d.h"
+
 typedef enum tagBody
 {
 	MainBody = 0,
@@ -25,17 +27,19 @@ typedef enum tagBody
 	NSString * spriteName;
 	CGPoint spriteOffset;
     
+    
 @public
 	Body bodyType;
 	BOOL touching;
 	BOOL destroy;
-    
+    CCSprite * sprite;
     
 }
 @property(nonatomic,retain) id data;
 @property(nonatomic,retain) NSString * name;
 @property(nonatomic,retain) NSString * textureName;
 @property(nonatomic,retain) NSString * spriteName;
+@property(nonatomic,retain) CCSprite * sprite;
 @property CGSize rect;
 @property CGPoint spriteOffset;
 @property BOOL touching;

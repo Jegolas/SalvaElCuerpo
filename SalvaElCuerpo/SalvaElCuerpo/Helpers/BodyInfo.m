@@ -11,7 +11,7 @@
 @implementation BodyInfo
 
 @synthesize data, name, rect;
-@synthesize spriteName, textureName, spriteOffset;
+@synthesize spriteName, textureName, spriteOffset, sprite;
 @synthesize touching, destroy;
 
 

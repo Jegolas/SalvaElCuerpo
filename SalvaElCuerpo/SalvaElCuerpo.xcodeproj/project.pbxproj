@@ -170,6 +170,7 @@
 		41D554221513074100C934ED /* sprites.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41D5541F1513074100C934ED /* sprites.plist */; };
 		41D554231513074100C934ED /* sprites.png in Resources */ = {isa = PBXBuildFile; fileRef = 41D554201513074100C934ED /* sprites.png */; };
 		41E95BFC1508883B006449C3 /* TerrainLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 41E95BFB1508883B006449C3 /* TerrainLayer.mm */; };
+		FC7D516C1516F31A00B92FEA /* People.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC7D516B1516F31A00B92FEA /* People.mm */; };
 		FC82349314933F22008B79C6 /* ControllerLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC82349214933F22008B79C6 /* ControllerLayer.mm */; };
 		FC82349B14934363008B79C6 /* SneakyPad.m in Sources */ = {isa = PBXBuildFile; fileRef = FC82349A14934363008B79C6 /* SneakyPad.m */; };
 		FC82349E149346F9008B79C6 /* digits.fnt in Resources */ = {isa = PBXBuildFile; fileRef = FC82349C149346F9008B79C6 /* digits.fnt */; };
@@ -511,6 +512,8 @@
 		41D554201513074100C934ED /* sprites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sprites.png; sourceTree = "<group>"; };
 		41E95BFA1508883B006449C3 /* TerrainLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TerrainLayer.h; path = Layers/TerrainLayer.h; sourceTree = "<group>"; };
 		41E95BFB1508883B006449C3 /* TerrainLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = TerrainLayer.mm; path = Layers/TerrainLayer.mm; sourceTree = "<group>"; };
+		FC7D516A1516F31A00B92FEA /* People.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = People.h; path = PhysicsItems/People.h; sourceTree = "<group>"; };
+		FC7D516B1516F31A00B92FEA /* People.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = People.mm; path = PhysicsItems/People.mm; sourceTree = "<group>"; };
 		FC82349114933F22008B79C6 /* ControllerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ControllerLayer.h; path = Layers/ControllerLayer.h; sourceTree = "<group>"; };
 		FC82349214933F22008B79C6 /* ControllerLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ControllerLayer.mm; path = Layers/ControllerLayer.mm; sourceTree = "<group>"; };
 		FC82349914934363008B79C6 /* SneakyPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SneakyPad.h; path = Controllers/SneakyPad.h; sourceTree = "<group>"; };
@@ -1081,6 +1084,8 @@
 			children = (
 				4194B96E14CD440200B92E2C /* Vessel.h */,
 				4194B96F14CD440200B92E2C /* Vessel.mm */,
+				FC7D516A1516F31A00B92FEA /* People.h */,
+				FC7D516B1516F31A00B92FEA /* People.mm */,
 			);
 			name = PhysicsItems;
 			sourceTree = "<group>";
@@ -1357,6 +1362,7 @@
 				4194B97414CD450A00B92E2C /* BodyInfo.m in Sources */,
 				4194B97714D1256100B92E2C /* WorldLayer.mm in Sources */,
 				41E95BFC1508883B006449C3 /* TerrainLayer.mm in Sources */,
+				FC7D516C1516F31A00B92FEA /* People.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1412,6 +1418,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"SalvaElCuerpo/libs\"";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1429,6 +1436,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"SalvaElCuerpo/libs\"";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

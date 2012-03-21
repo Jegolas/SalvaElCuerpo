@@ -13,7 +13,7 @@
 -(void)update:(ccTime)dt;
 -(void)updateWorld:(ccTime)dt;
 -(void)GenerateVessel;
-
+-(void)GeneratePeople:(CGPoint) spawnPoint;
 @end
 
 @implementation GameLayer
@@ -91,6 +91,11 @@
     {
         [self GenerateVessel];
     }
+    
+    if (person == Nil)
+    {
+        [self GeneratePeople:ccp(180.0f, 100.0f)];
+    }
 }
 
 - (void)updateCamera {
@@ -165,12 +170,23 @@
                     
                     // No need to look further
                     [self setPosition:relativePoint];
-                    break;
+                    //break;
+                }
+                else if (myActor->bodyType == Person)
+                {
+                    // Calculate the distance between the person and the main body and if it is close, alert the user with a
+                    // Random heat sensor on the location
+                    
+                    // Move the sprite to follow the body
+                    //CCSprite *sprite;
+                    //sprite = myActor.sprite;
+                    //sprite.position = ccp(20.0f, 100.0f*CCRANDOM_0_1());
+                    
                 }
             }
         }
     }
-    
+    [person update];
     // Controllers
     if (leftJoystick != Nil)
     {
@@ -206,6 +222,8 @@
         snapFeedback.position = *bodyPosition;
     }
 
+    //person.position = *bodyPosition;
+    
     if (debugLabel != Nil){
         debugLabel.string = [NSString stringWithFormat:@"x=%f, y=%f", bodyPosition->x, bodyPosition->y];
     }
@@ -219,6 +237,22 @@
     
     vessel = [[Vessel alloc] CreateVessel:world spawnPoint:sp];
     CCLOG(@"Finished loading vessel");
+}
+
+// Generates the people floating around
+-(void)GeneratePeople:(CGPoint) spawnPoint
+{
+    // this one works
+    person = [People spriteWithSpriteFrameName:@"grab.png"];
+ 
+    [person CreatePerson:world spawnPoint:spawnPoint];
+    person.position = ccp(180.0, 100.0);
+    //person.opacity = 0;
+    [batch1 addChild:person z:50];
+    
+    
+    //[self addChild:person z:60]; // Keep this here because this will turn on the sprite
+    NSLog(@"added person");
 }
 
 -(void) draw

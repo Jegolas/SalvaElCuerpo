@@ -63,6 +63,30 @@
         [self addChild:label z:12];
         debugLabel = [label retain];
          
+        // sprite sheet
+		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sprites.plist"];
+		batch1 = [[CCSpriteBatchNode alloc] initWithFile:@"sprites.png" capacity:50];
+		[self addChild:batch1];
+        
+        CCSprite *sprite;
+        // menu button
+        sprite = [CCSprite spriteWithSpriteFrameName:@"menuButton.png"];
+        sprite.position = ccp(sw-32,sh-32);
+        //sprite.position = ccp(90.0, 50.0);
+        [batch1 addChild:sprite z:50];
+        menuButton = [sprite retain];
+
+      
+        // menu button
+        /*
+        sprite = [CCSprite spriteWithSpriteFrameName:@"grab.png"];
+        //sprite.position = ccp(sw-32,sh-32);
+        sprite.position = ccp(90.0, 50.0);
+        [batch1 addChild:sprite z:50];
+        */
+        
+        
+        
 		//[self schedule:@selector(tick:) interval:1.0f/120.0f];
 	}
 	return self;
@@ -76,6 +100,41 @@
 //function to apply a velocity to a position with delta
 -(CGPoint)applyVelocity:(CGPoint)velocity toPosition:(CGPoint)position withDelta:(float)delta{
 	return CGPointMake(position.x + velocity.x * delta, position.y + velocity.y * delta);
+}
+
+- (void)tapDownAt:(CGPoint)location {
+    
+	// menu button
+	CGRect rect = CGRectMake(menuButton.position.x-32, menuButton.position.y-32+self.position.y, 64, 64);
+	//NSLog(@"tapDownAt (%f.1,%.1f)",location.x,location.y);
+	//NSLog(@"menuButton rect (%.1f,%.1f,%.1f,%.1f)",rect.origin.x,rect.origin.y,rect.size.width,rect.size.height);
+    
+	if(CGRectContainsPoint(rect, location)) {
+        NSLog(@"Inside the rectangle");
+		[self showPopupMenu];
+		//return;
+	}
+    
+     /*
+	if(!gameInProgress) {
+		[self resetLevel];
+		return;
+	}
+    */
+	//lastTouchLocation = location;
+	//location = ccpSub(location, self.position);
+	
+	//static float tapRadius = 64.0f;
+	
+    
+}
+
+// This menu needs to have a nice option where the user can opt to reset, main menu, etc.
+- (void)showPopupMenu {
+	//gameInProgress = NO;
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game Paused" message:nil delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:@"Main Menu", nil];
+	[alert show];
+	[alert release];
 }
 
 -(void)tick:(float)delta {
@@ -100,7 +159,10 @@
 {
 	[leftJoystick touchesBegan:touches withEvent:event];
 	[rightJoystick touchesBegan:touches withEvent:event];
-	
+    UITouch *touch =[touches anyObject];
+    CGPoint location = [touch locationInView:[touch view]];
+	location = [[CCDirector sharedDirector] convertToGL:location];
+	[self tapDownAt:location];
     /*
 	// This should be pushed to it's own class like the joystick method
 	UITouch *touch = [touches anyObject];
@@ -137,6 +199,7 @@
 - (void) dealloc
 {
 	// need to dealloc the joysticks here
+    [menuButton release];
 	[super dealloc];
 	NSLog(@"Dealloc-ed controller");
 }

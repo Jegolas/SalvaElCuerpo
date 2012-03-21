@@ -102,10 +102,10 @@ enum {
         gameLayer.leftJoystick = controllerLayer.leftJoystick;
         gameLayer.rightJoystick = controllerLayer.rightJoystick;
         gameLayer.debugLabel = controllerLayer.debugLabel;
-        
+
         gameLayer.terrain = terrain;
         
-        controllerLayer.batch1 = gameLayer.batch1;
+        //controllerLayer.batch1 = gameLayer.batch1;
         //self.scale = 0.5;
 		[self schedule:@selector(update:)];
 	}
@@ -115,7 +115,6 @@ enum {
 - (void)dealloc {
 	[starIcon release];
 	[starsCollectedLabel release];
-	[menuButton release];
 	[super dealloc];
 }
 
@@ -126,16 +125,6 @@ enum {
     // ** Might need to change this here for more logical calls
     [gameLayer loadLevel];
     //[worldLayer GenerateVessel];
-    
-    batch1 = gameLayer.batch1;
-    CCSprite *sprite;
-    // menu button
-    sprite = [CCSprite spriteWithSpriteFrameName:@"menuButton.png"];
-    sprite.position = ccp(sw-32,sh-32);
-    //sprite.position = ccp(90.0, 50.0);
-    [batch1 addChild:sprite z:50];
-    menuButton = [sprite retain];
-    //CCLOG(@"position x = %f, y=%f", sw, sh);
     
 }
 
@@ -337,8 +326,6 @@ enum {
 	float ny = sh-32-self.position.y;
 	starIcon.position = ccp(starIcon.position.x,ny);
 	starsCollectedLabel.position = ccp(starsCollectedLabel.position.x, ny);
-	menuButton.position = ccp(menuButton.position.x,ny);
-    //CCLOG(@"ny = %f",ny);
 }
 
 - (void)showPopupMenu {

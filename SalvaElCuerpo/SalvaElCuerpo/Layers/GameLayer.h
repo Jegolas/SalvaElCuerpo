@@ -11,6 +11,7 @@
 #import "Vessel.h"
 #import "SneakyPad.h"
 #import "TerrainLayer.h"
+#import "People.h"
 
 @interface GameLayer : CCLayer
 {
@@ -18,6 +19,7 @@
     float sh;
     BoidLayer* boidLayer;
     Vessel* vessel;
+    People* person;
     CCTMXTiledMap *_tileMap;
     CCTMXLayer *_background;
     CCSprite *snapFeedback;
@@ -41,4 +43,6 @@
 - (void)update:(ccTime)dt;
 - (void)updateCamera;
 - (void)updateWorld: (ccTime)dt;
+-(void)GeneratePeople:(CGPoint) spawnPoint;
+
 @end
