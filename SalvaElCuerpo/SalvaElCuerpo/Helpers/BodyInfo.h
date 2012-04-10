@@ -15,7 +15,8 @@ typedef enum tagBody
 	Person = 1,
 	Sensor = 2,
 	Engine = 3,
-	Shark = 4
+	Shark = 4,
+    Banana = 5
 } Body;
 
 @interface BodyInfo : NSObject 

@@ -26,18 +26,23 @@
 		
 		b2FixtureDef fd;
 		fd.shape = &shape_body;
-		fd.density = 10.5f;
-		
+		fd.density = 1.0f;
+		fd.friction = 0.3;
+        fd.restitution = 0.4;
+        
 		b2BodyDef bd;
 		bd.type = b2_dynamicBody;
 		bd.position.Set((180.0f/PTM_RATIO)/scale, (100.0f/PTM_RATIO)/scale);
+        bd.linearDamping = 1;
+        bd.angularDamping = 1;
+        
 		vehicle_body = world->CreateBody(&bd);
 		vehicle_body->SetUserData(bi);
 		body_fixture = vehicle_body->CreateFixture(&fd);
 		//VehicleMainBody = vehicle_body;
 		
 		// Rest of the bodies are lighter
-		fd.density = 1.5f;
+		fd.density = 1.0f;
 		
 		// Wheel 1 (this is going to be my motor wheel)
 		b2PolygonShape shape_left_wheel;
@@ -59,7 +64,7 @@
 		jd1.localAnchorB = wheel1->GetLocalPoint(bd.position);
 		jd1.referenceAngle = wheel1->GetAngle() - vehicle_body->GetAngle();
 		jd1.enableMotor = true;
-		jd1.maxMotorTorque = 10.0f;
+		jd1.maxMotorTorque = 100.0f;
 		jd1.motorSpeed = 10.0f;
 		m_joint = (b2RevoluteJoint*)world->CreateJoint(&jd1);
 		
@@ -70,7 +75,7 @@
 		b2PolygonShape shape_right_wheel;
 		shape_right_wheel.SetAsBox((5.0f/PTM_RATIO)/scale, (10.0f/PTM_RATIO)/scale);
 		fd.shape = &shape_right_wheel;
-		bd.position.Set((180.0f/PTM_RATIO - 10.0f/PTM_RATIO)/scale, (100.0f/PTM_RATIO + 20.0f/PTM_RATIO)/scale);
+		bd.position.Set((180.0f/PTM_RATIO - 20.0f/PTM_RATIO)/scale, (100.0f/PTM_RATIO + 20.0f/PTM_RATIO)/scale);
 		wheel2  = world->CreateBody(&bd);
 		wheel2 ->CreateFixture(&fd);
 		
@@ -92,7 +97,7 @@
 		b2PolygonShape shape_middle_wheel;
 		shape_middle_wheel.SetAsBox((5.0f/PTM_RATIO)/scale, (10.0f/PTM_RATIO)/scale);
 		fd.shape = &shape_middle_wheel;
-		bd.position.Set((180.0f/PTM_RATIO + 10.0f/PTM_RATIO)/scale, (100.0f/PTM_RATIO + 20.0f/PTM_RATIO)/scale);
+		bd.position.Set((180.0f/PTM_RATIO + 20.0f/PTM_RATIO)/scale, (100.0f/PTM_RATIO + 20.0f/PTM_RATIO)/scale);
 		wheel3 = world->CreateBody(&bd);
 		wheel3->CreateFixture(&fd);
 		
@@ -151,13 +156,15 @@
 
 -(void)updateVessel: (float) timon_rotation :(float) power_lever
 {
+    [self killOrthogonalVelocity:wheel1];
+	[self killOrthogonalVelocity:wheel2];
+	[self killOrthogonalVelocity:wheel3];
+    
 	b2Vec2 ldirection = wheel1->GetTransform().R.col2;
 	ldirection *= engineSpeed;
 	wheel1->ApplyForce(ldirection, wheel1->GetPosition());
     
-	[self killOrthogonalVelocity:wheel1];
-	[self killOrthogonalVelocity:wheel2];
-	[self killOrthogonalVelocity:wheel3];
+
 	
 	float32 mspeed = (timon_rotation)/5.0f  - m_joint->GetJointAngle();
 	m_joint->SetMotorSpeed(mspeed*1.5f);// * 1.5f);

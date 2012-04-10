@@ -14,6 +14,7 @@
 -(void)updateWorld:(ccTime)dt;
 -(void)GenerateVessel;
 -(void)GeneratePeople:(CGPoint) spawnPoint;
+-(void)GenerateBoat;
 @end
 
 @implementation GameLayer
@@ -28,6 +29,7 @@
 @synthesize terrain = _terrain;
 @synthesize debugLabel;
 @synthesize batch1;
+@synthesize arrowArray = _arrowArray;
 
 - (id)init {
 	if((self = [super init])) {
@@ -96,6 +98,26 @@
     {
         [self GeneratePeople:ccp(180.0f, 100.0f)];
     }
+    ropeLength = sh*250/1024;
+    
+    ropeBatch = [CCSpriteBatchNode batchNodeWithFile:@"rope.png"];
+    CGPoint p1;
+    CGPoint p2;
+    
+    p1 = ccp(180.0*CCRANDOM_0_1(), 100.0);
+    p2 = ccp(180.0*CCRANDOM_0_1(), 200.0);
+    
+    rope = [[VRope alloc] initWithPoints:p1 pointB:p2 spriteSheet:ropeBatch];
+    
+    //VRope *verletRope = [[VRope alloc] init:bodyA pointB:bodyB spriteSheet:ropeSegmentSprite];
+    [self addChild:ropeBatch z:1];
+
+    [self GenerateBanana:ccp(100.0f, 100.f)];
+    
+    //if (boat == Nil)
+    //{
+    //    [self GenerateBoat];
+    //}
 }
 
 - (void)updateCamera {
@@ -141,6 +163,7 @@
     int32 positionIterrations = 2;
     float timon_rotation = 0.0;
     float power_lever = 0.0;
+    b2Body *mainBody;
     
     if (world != Nil){
         world->Step(dt, velocityIterations, positionIterrations);
@@ -154,6 +177,7 @@
             if (myActor != Nil){
                 if (myActor->bodyType == MainBody)
                 {
+                    mainBody = b;
                     bodyPosition = new CGPoint();
                     // Get the body location
                     b2Vec2 bpos = b->GetPosition();
@@ -186,7 +210,16 @@
             }
         }
     }
-    [person update];
+    //[person update];
+    for (People *pers in _arrowArray) {
+        [pers update];
+        float distance;
+        distance = b2Distance(pers.body->GetWorldCenter(), mainBody->GetWorldCenter());
+        //NSLog(@"Distance = %f", distance);
+    }
+    
+    [bboat update];
+    
     // Controllers
     if (leftJoystick != Nil)
     {
@@ -205,6 +238,10 @@
         [vessel updateVessel:timon_rotation :power_lever];
     }
     
+    if (boat != Nil)
+    {
+        [boat updateVessel:timon_rotation :power_lever];
+    }
     if(_terrain != Nil)
     {
         [_terrain update:dt position:*bodyPosition];
@@ -227,6 +264,9 @@
     if (debugLabel != Nil){
         debugLabel.string = [NSString stringWithFormat:@"x=%f, y=%f", bodyPosition->x, bodyPosition->y];
     }
+    
+    [rope updateWithPoints:*bodyPosition pointB:bboat.position dt:dt];
+	[rope updateSprites];
 }
 
 -(void) GenerateVessel
@@ -239,20 +279,54 @@
     CCLOG(@"Finished loading vessel");
 }
 
+-(void) GenerateBoat
+{
+    boat = [[Boat alloc] CreateBoat:world];
+}
+
 // Generates the people floating around
 -(void)GeneratePeople:(CGPoint) spawnPoint
 {
+    _arrowArray = [[NSMutableArray alloc] init];
+    for (int i=0; i<5; i++)
+    {
+        People* personArr;
+        // this one works
+        personArr = [People spriteWithSpriteFrameName:@"grab.png"];
+        
+        [personArr CreatePerson:world spawnPoint:spawnPoint];
+        personArr.position = ccp(180.0*CCRANDOM_0_1(), 100.0);
+        //person.opacity = 0;
+        [batch1 addChild:personArr z:50];
+        
+        [_arrowArray addObject:personArr];
+        
+        //[self addChild:person z:60]; // Keep this here because this will turn on the sprite
+        NSLog(@"added person");
+    }
+}
+
+// Generates the banana floating around
+-(void)GenerateBanana:(CGPoint) spawnPoint
+{
     // this one works
-    person = [People spriteWithSpriteFrameName:@"grab.png"];
- 
-    [person CreatePerson:world spawnPoint:spawnPoint];
-    person.position = ccp(180.0, 100.0);
+    bboat = [BananaBoat spriteWithSpriteFrameName:@"starIcon.png"];
+    
+    [bboat CreateBBoat:world spawnPoint:spawnPoint];
+    bboat.position = ccp(100.0*CCRANDOM_0_1(), 100.0);
     //person.opacity = 0;
-    [batch1 addChild:person z:50];
+    [batch1 addChild:bboat z:50];
+    NSLog(@"added banana");
     
-    
-    //[self addChild:person z:60]; // Keep this here because this will turn on the sprite
-    NSLog(@"added person");
+    //define rope joint, params: two b2bodies, two local anchor points, length of rope
+
+//    b2RopeJointDef jd;
+//    jd.bodyA=body1; //define bodies
+//    jd.bodyB=body2;
+//    jd.localAnchorA = b2Vec2(0,0); //define anchors
+//    jd.localAnchorB = b2Vec2(0,0);
+//    jd.maxLength= (body2->GetPosition() - body1->GetPosition()).Length(); //define max length of joint = current distance between bodies
+//    world->CreateJoint(&jd); //create joint
 }
 
 -(void) draw

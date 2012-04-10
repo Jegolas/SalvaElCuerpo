@@ -159,6 +159,7 @@
 		4138E087148B4E31006DAA6D /* HelloWorldLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4138E086148B4E31006DAA6D /* HelloWorldLayer.mm */; };
 		4138E08A148B4E31006DAA6D /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4138E089148B4E31006DAA6D /* GLES-Render.mm */; };
 		4138E08D148B4E31006DAA6D /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = 4138E08C148B4E31006DAA6D /* blocks.png */; };
+		417A3F7C151FF40A00A22AE6 /* Boat.mm in Sources */ = {isa = PBXBuildFile; fileRef = 417A3F7B151FF40900A22AE6 /* Boat.mm */; };
 		41857008150490D2009DEB92 /* FishTiles.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 41857007150490D2009DEB92 /* FishTiles.tmx */; };
 		4185700B15049250009DEB92 /* FishTiles.png in Resources */ = {isa = PBXBuildFile; fileRef = 4185700A15049250009DEB92 /* FishTiles.png */; };
 		418570101505DE41009DEB92 /* Noise.png in Resources */ = {isa = PBXBuildFile; fileRef = 4185700F1505DE41009DEB92 /* Noise.png */; };
@@ -166,6 +167,10 @@
 		4194B97014CD440200B92E2C /* Vessel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4194B96F14CD440200B92E2C /* Vessel.mm */; };
 		4194B97414CD450A00B92E2C /* BodyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4194B97314CD450A00B92E2C /* BodyInfo.m */; };
 		4194B97714D1256100B92E2C /* WorldLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4194B97614D1256100B92E2C /* WorldLayer.mm */; };
+		41CE9DAF1527CB6B00B5F9DB /* VRope.mm in Sources */ = {isa = PBXBuildFile; fileRef = 41CE9DAE1527CB6B00B5F9DB /* VRope.mm */; };
+		41CE9DB21527CBE700B5F9DB /* VStick.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CE9DB11527CBE700B5F9DB /* VStick.m */; };
+		41CE9DB51527CC0000B5F9DB /* VPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CE9DB41527CC0000B5F9DB /* VPoint.m */; };
+		41CE9DB8152972A100B5F9DB /* BananaBoat.mm in Sources */ = {isa = PBXBuildFile; fileRef = 41CE9DB7152972A100B5F9DB /* BananaBoat.mm */; };
 		41D554211513074100C934ED /* rope.png in Resources */ = {isa = PBXBuildFile; fileRef = 41D5541E1513074100C934ED /* rope.png */; };
 		41D554221513074100C934ED /* sprites.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41D5541F1513074100C934ED /* sprites.plist */; };
 		41D554231513074100C934ED /* sprites.png in Resources */ = {isa = PBXBuildFile; fileRef = 41D554201513074100C934ED /* sprites.png */; };
@@ -496,6 +501,9 @@
 		4138E089148B4E31006DAA6D /* GLES-Render.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "GLES-Render.mm"; sourceTree = "<group>"; };
 		4138E08B148B4E31006DAA6D /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
 		4138E08C148B4E31006DAA6D /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
+		417A3F7A151FF40900A22AE6 /* Boat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Boat.h; path = PhysicsItems/Boat.h; sourceTree = "<group>"; };
+		417A3F7B151FF40900A22AE6 /* Boat.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Boat.mm; path = PhysicsItems/Boat.mm; sourceTree = "<group>"; };
+		417A3F8415216E3100A22AE6 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = Helpers/Constants.h; sourceTree = "<group>"; };
 		41857007150490D2009DEB92 /* FishTiles.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = FishTiles.tmx; path = Resources/FishTiles.tmx; sourceTree = "<group>"; };
 		4185700A15049250009DEB92 /* FishTiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FishTiles.png; path = Resources/FishTiles.png; sourceTree = "<group>"; };
 		4185700F1505DE41009DEB92 /* Noise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Noise.png; path = Resources/Noise.png; sourceTree = "<group>"; };
@@ -507,6 +515,14 @@
 		4194B97314CD450A00B92E2C /* BodyInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BodyInfo.m; path = Helpers/BodyInfo.m; sourceTree = "<group>"; };
 		4194B97514D1256000B92E2C /* WorldLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorldLayer.h; path = Layers/WorldLayer.h; sourceTree = "<group>"; };
 		4194B97614D1256100B92E2C /* WorldLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = WorldLayer.mm; path = Layers/WorldLayer.mm; sourceTree = "<group>"; };
+		41CE9DAD1527CB6B00B5F9DB /* VRope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VRope.h; path = VerletRope/VRope.h; sourceTree = "<group>"; };
+		41CE9DAE1527CB6B00B5F9DB /* VRope.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = VRope.mm; path = VerletRope/VRope.mm; sourceTree = "<group>"; };
+		41CE9DB01527CBE700B5F9DB /* VStick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VStick.h; path = VerletRope/VStick.h; sourceTree = "<group>"; };
+		41CE9DB11527CBE700B5F9DB /* VStick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VStick.m; path = VerletRope/VStick.m; sourceTree = "<group>"; };
+		41CE9DB31527CC0000B5F9DB /* VPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VPoint.h; path = VerletRope/VPoint.h; sourceTree = "<group>"; };
+		41CE9DB41527CC0000B5F9DB /* VPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VPoint.m; path = VerletRope/VPoint.m; sourceTree = "<group>"; };
+		41CE9DB6152972A100B5F9DB /* BananaBoat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BananaBoat.h; path = PhysicsItems/BananaBoat.h; sourceTree = "<group>"; };
+		41CE9DB7152972A100B5F9DB /* BananaBoat.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = BananaBoat.mm; path = PhysicsItems/BananaBoat.mm; sourceTree = "<group>"; };
 		41D5541E1513074100C934ED /* rope.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rope.png; sourceTree = "<group>"; };
 		41D5541F1513074100C934ED /* sprites.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sprites.plist; sourceTree = "<group>"; };
 		41D554201513074100C934ED /* sprites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sprites.png; sourceTree = "<group>"; };
@@ -587,6 +603,7 @@
 		4138DEBA148B4E2E006DAA6D /* SalvaElCuerpo */ = {
 			isa = PBXGroup;
 			children = (
+				41CE9DAB1527CB1E00B5F9DB /* VerletRope */,
 				4194B97114CD44CD00B92E2C /* Helpers */,
 				4194B96D14CD439900B92E2C /* PhysicsItems */,
 				FC8234AC14988129008B79C6 /* Flocking */,
@@ -1086,6 +1103,10 @@
 				4194B96F14CD440200B92E2C /* Vessel.mm */,
 				FC7D516A1516F31A00B92FEA /* People.h */,
 				FC7D516B1516F31A00B92FEA /* People.mm */,
+				417A3F7A151FF40900A22AE6 /* Boat.h */,
+				417A3F7B151FF40900A22AE6 /* Boat.mm */,
+				41CE9DB6152972A100B5F9DB /* BananaBoat.h */,
+				41CE9DB7152972A100B5F9DB /* BananaBoat.mm */,
 			);
 			name = PhysicsItems;
 			sourceTree = "<group>";
@@ -1095,8 +1116,22 @@
 			children = (
 				4194B97214CD450A00B92E2C /* BodyInfo.h */,
 				4194B97314CD450A00B92E2C /* BodyInfo.m */,
+				417A3F8415216E3100A22AE6 /* Constants.h */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		41CE9DAB1527CB1E00B5F9DB /* VerletRope */ = {
+			isa = PBXGroup;
+			children = (
+				41CE9DAD1527CB6B00B5F9DB /* VRope.h */,
+				41CE9DAE1527CB6B00B5F9DB /* VRope.mm */,
+				41CE9DB01527CBE700B5F9DB /* VStick.h */,
+				41CE9DB11527CBE700B5F9DB /* VStick.m */,
+				41CE9DB31527CC0000B5F9DB /* VPoint.h */,
+				41CE9DB41527CC0000B5F9DB /* VPoint.m */,
+			);
+			name = VerletRope;
 			sourceTree = "<group>";
 		};
 		FC82348F14933EE0008B79C6 /* Layers */ = {
@@ -1363,6 +1398,11 @@
 				4194B97714D1256100B92E2C /* WorldLayer.mm in Sources */,
 				41E95BFC1508883B006449C3 /* TerrainLayer.mm in Sources */,
 				FC7D516C1516F31A00B92FEA /* People.mm in Sources */,
+				417A3F7C151FF40A00A22AE6 /* Boat.mm in Sources */,
+				41CE9DAF1527CB6B00B5F9DB /* VRope.mm in Sources */,
+				41CE9DB21527CBE700B5F9DB /* VStick.m in Sources */,
+				41CE9DB51527CC0000B5F9DB /* VPoint.m in Sources */,
+				41CE9DB8152972A100B5F9DB /* BananaBoat.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

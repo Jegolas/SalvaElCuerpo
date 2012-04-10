@@ -1,16 +1,15 @@
 //
-//  People.mm
+//  BananaBoat.mm
 //  SalvaElCuerpo
 //
-//  Created by Jon on 3/18/12.
+//  Created by Jon on 4/1/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "People.h"
+#import "BananaBoat.h"
 
-#define PTM_RATIO 32
+@implementation BananaBoat
 
-@implementation People
 @synthesize body = _body;
 @synthesize batch1 = _batch1;
 
@@ -25,9 +24,9 @@
 	return self;
 }
 
--(void)CreatePerson:(b2World *) world  spawnPoint:(CGPoint) spawnPoint
+-(void)CreateBBoat:(b2World *) world  spawnPoint:(CGPoint) spawnPoint
 {
-        
+    
     // Create a person object, with a box2d circle around it
     // Body
     b2CircleShape shape;
@@ -36,7 +35,7 @@
     bd.type = b2_dynamicBody;
     bd.position.Set(spawnPoint.x/PTM_RATIO, spawnPoint.y/PTM_RATIO);
     BodyInfo * bi = [[BodyInfo alloc] init];
-    bi->bodyType = Person;
+    bi->bodyType = Banana;
     bi->touching = false;
     bi->destroy = false;
     bi->sprite = self;
@@ -48,10 +47,10 @@
     ballShapeDef.density = 1.0f;
     ballShapeDef.friction = 5.0f;
     ballShapeDef.restitution = 0.1;
-    ballShapeDef.isSensor = false; // These guys are sensors.  Dont ned them to be dynamic
+    ballShapeDef.isSensor = false;
     //ballShapeDef.userData = self;
     _body->CreateFixture(&ballShapeDef);
-
+    
     
 }
 
@@ -67,6 +66,5 @@
 {
 	[super dealloc];
 }
-
 
 @end

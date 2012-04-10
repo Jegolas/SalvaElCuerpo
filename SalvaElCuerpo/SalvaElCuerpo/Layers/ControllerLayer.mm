@@ -7,12 +7,14 @@
 //
 
 #import "ControllerLayer.h"
+#import "Constants.h"
 
 @implementation ControllerLayer
 @synthesize leftJoystick;
 @synthesize rightJoystick;
 @synthesize debugLabel;
 @synthesize batch1;
+@synthesize world;
 
 -(id)init{
 	
@@ -135,6 +137,86 @@
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game Paused" message:nil delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:@"Main Menu", nil];
 	[alert show];
 	[alert release];
+}
+
+
+-(void)GeneratePControls
+{
+    b2BodyDef bd;
+	
+	 ground = world->CreateBody(&bd);
+	 
+	 b2PolygonShape shape;
+	 shape.SetAsEdge(b2Vec2(-40.0f, 0.0f), b2Vec2(40.0f, 0.0f));
+	 ground->CreateFixture(&shape, 0.0f);
+	 
+
+	b2PolygonShape shape_body;
+	shape_body.SetAsBox(30.0f/PTM_RATIO, 15.0f/PTM_RATIO);
+	
+	b2FixtureDef fd;
+	fd.shape = &shape_body;
+	fd.density = 0.01f;
+	fd.isSensor = true;
+	
+	//b2BodyDef bd;
+	bd.type = b2_dynamicBody;
+	bd.position.Set(50.0f/PTM_RATIO, 60.0f/PTM_RATIO);
+	b2Body*  sensor1 = world->CreateBody(&bd);
+	sensor1->CreateFixture(&fd);
+	//b2Fixture* engineControl = sensor1->CreateFixture(&fd);
+	
+	
+    b2PrismaticJointDef pjd;
+    
+    // Bouncy limit
+    b2Vec2 axis(0.0f, 1.0f);
+    axis.Normalize();
+    pjd.Initialize(ground, sensor1, b2Vec2(0.0f, 0.0f), axis);
+    
+    // Non-bouncy limit
+    //pjd.Initialize(ground, sensor1, ground->GetWorldCenter(), b2Vec2(0.0f, 1.0f));
+    
+    pjd.motorSpeed = 10.0f;
+    pjd.maxMotorForce = 10000.0f;
+    //pjd.enableMotor = true;
+    pjd.lowerTranslation = -30.0f/PTM_RATIO;
+    pjd.upperTranslation = 30.0f/PTM_RATIO;
+    pjd.enableLimit = true;
+    
+    //m_joint = (b2PrismaticJoint*)m_world->CreateJoint(&pjd);
+    power_lever = (b2PrismaticJoint*)world->CreateJoint(&pjd);
+    
+	// Create wheel
+	b2CircleShape shape_timon;
+	shape_timon.m_radius = 50.0f/PTM_RATIO;
+	
+	b2BodyDef timonBodyDef;
+	timonBodyDef.type = b2_dynamicBody;
+	timonBodyDef.position.Set(430.0f/PTM_RATIO, 50.0f/PTM_RATIO);
+	b2Body*  timonBody = world->CreateBody(&timonBodyDef);
+	
+	b2FixtureDef fd2;
+	fd2.shape = &shape_timon;
+	fd2.density = 1.00f;
+	fd2.isSensor = false;
+	timonBody->CreateFixture(&fd2);
+	
+    // Create the joint matted to the circle
+    b2RevoluteJointDef jd1;
+    jd1.bodyA = ground;
+    jd1.bodyB = timonBody;
+    jd1.localAnchorA = ground->GetLocalPoint(timonBodyDef.position);
+    jd1.localAnchorB = timonBody->GetLocalPoint(timonBodyDef.position);
+    jd1.referenceAngle = timonBody->GetAngle() - ground->GetAngle();
+    jd1.enableLimit = true;
+    jd1.lowerAngle = -3.14f;
+    jd1.upperAngle = 3.14f;
+    jd1.enableMotor = true;
+    jd1.maxMotorTorque = 100.0f;
+    //jd1.motorSpeed = 100.0f;
+    timon_joint = (b2RevoluteJoint*)world->CreateJoint(&jd1); 
+    
 }
 
 -(void)tick:(float)delta {
